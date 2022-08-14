@@ -68,7 +68,7 @@ jobs:
             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
         - name: Build the Docker image (prodcution)
-          run: docker build --tag nodejs-multistage --target prod
+          run: docker build --tag nodejs-multistage --target prod .
           # run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
 
         - name: Docker Push # push The image to the docker hub
