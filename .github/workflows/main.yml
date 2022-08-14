@@ -65,14 +65,14 @@ jobs:
 
         - name: docker login
           run: | # log into docker hub account
-            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
         - name: Build the Docker image (prodcution)
           run: docker build --tag nodejs-multistage --target prod
           # run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
 
         - name: Docker Push # push The image to the docker hub
-          run: docker push $DOCKERHUB_USERNAME/nodejs-multistage
+          run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-multistage
           # run: docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
         # - name: Build and push
         #   uses: docker/build-push-action@v2
